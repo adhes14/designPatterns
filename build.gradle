@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+}
+
+group 'com.patterns'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task runSingleton (dependsOn: 'classes', type: JavaExec) {
+    main = 'com.patterns.singleton.DemoSingleThread'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runFacade (dependsOn: 'classes', type: JavaExec) {
+    main = 'com.patterns.facade.Demo'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task runStrategy (dependsOn: 'classes', type: JavaExec) {
+    main = 'com.patterns.strategy.Demo'
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+}
+
+task runFactory (dependsOn: 'classes', type: JavaExec) {
+    main = 'com.patterns.factory.Demo'
+    classpath = sourceSets.main.runtimeClasspath
+}
